@@ -1,9 +1,18 @@
 import { Outlet } from "react-router-dom";
 import { GasPump } from "phosphor-react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
-function Navbar() {
+function Navbar({ fetchSearch }) {
   const [gwei, setGwei] = useState();
+  const [input, setInput] = useState();
+  const searchInput = useRef();
+
+  const handleSearch = (event) => {
+    if (event.key === "Enter") {
+      console.log(searchInput.current.value);
+      fetchSearch(searchInput.current.value);
+    }
+  };
 
   //   useEffect(() => {
   //     fetch(
@@ -85,12 +94,30 @@ function Navbar() {
               </svg>
             </div>
             <input
+              ref={searchInput}
+              onKeyPress={handleSearch}
               type="text"
               id="search-navbar"
               className="block p-2 pl-10 pr-0 w-60 text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:text-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600  dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="Search Collection Or Contract Address"
+              placeholder="Search Collection..."
               size="100"
             />
+            <div className="flex absolute inset-y-0 right-5 items-center pl-3 pointer-events-none">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth="1.5"
+                stroke="currentColor"
+                className="w-6 h-6"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z"
+                />
+              </svg>
+            </div>
           </div>
 
           <div
@@ -111,7 +138,7 @@ function Navbar() {
                   href="#"
                   className="block font-poppins text-base pr-4 pl-3 text-gray-300 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-white md:p-0"
                 >
-                  Watchlist
+                  Top Market Cap
                 </a>
               </li>
               <li>
@@ -119,7 +146,7 @@ function Navbar() {
                   href="#"
                   className="block font-poppins text-base pr-4 pl-3 text-gray-300 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-white md:p-0"
                 >
-                  Services
+                  Minting Now
                 </a>
               </li>
               <li>
@@ -127,7 +154,7 @@ function Navbar() {
                   href="#"
                   className="block font-poppins text-base pr-4 pl-3 text-gray-300 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-white md:p-0 "
                 >
-                  Pricing
+                  Watchlist
                 </a>
               </li>
             </ul>
