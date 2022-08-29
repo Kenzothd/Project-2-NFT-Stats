@@ -1,27 +1,18 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import { GasPump } from "phosphor-react";
 import { useEffect, useState, useRef } from "react";
 
-function Navbar({ fetchSearch }) {
+function Navbar({ setSearchInput }) {
   const [gwei, setGwei] = useState();
-  const [input, setInput] = useState();
   const searchInput = useRef();
+  let navigate = useNavigate();
 
   const handleSearch = (event) => {
     if (event.key === "Enter") {
-      console.log(searchInput.current.value);
-      fetchSearch(searchInput.current.value);
+      setSearchInput(searchInput.current.value);
+      navigate("../search");
     }
   };
-
-  //   useEffect(() => {
-  //     fetch(
-  //       "https://api.etherscan.io/api?module=gastracker&action=gasoracle&apikey=78227RH2MGH83H5CVU1UG7U6XAMYSIE413"
-  //     )
-  //       .then((response) => response.json())
-  //       .then((data) => setGwei(data))
-  //       .catch((err) => console.error(err));
-  //   }, []);
 
   //tbc for mediaquery
   //   const navList = {};
@@ -69,7 +60,7 @@ function Navbar({ fetchSearch }) {
                     Gwei
                   </a>
                 </li>
-                <li className="px-1">
+                <li className="px-1 text-sm">
                   {/* {gwei?.result?.ProposeGasPrice} */}
                   12
                 </li>

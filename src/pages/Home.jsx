@@ -147,26 +147,28 @@ function Home() {
 
   return (
     <>
-      <button
-        onClick={handlerVol}
-        className="border-solid border-2 border-black p-1 px-2 m-2 rounded bg-slate-300 hover:bg-slate-200"
-      >
-        24H
-      </button>
-      <button
-        onClick={handlerVol}
-        className="border-solid border-2 border-black p-1 px-2 m-2 rounded bg-slate-300 hover:bg-slate-200"
-      >
-        7D
-      </button>
-      <button
-        onClick={handlerVol}
-        className="border-solid border-2 border-black p-1 px-2 m-2 rounded bg-slate-300 hover:bg-slate-200"
-      >
-        1M
-      </button>
+      <div className="text-center">
+        <button
+          onClick={handlerVol}
+          className="border-solid border-2 border-black p-1 px-2 m-2 rounded bg-slate-300 hover:bg-slate-200"
+        >
+          24H
+        </button>
+        <button
+          onClick={handlerVol}
+          className="border-solid border-2 border-black p-1 px-2 m-2 rounded bg-slate-300 hover:bg-slate-200"
+        >
+          7D
+        </button>
+        <button
+          onClick={handlerVol}
+          className="border-solid border-2 border-black p-1 px-2 m-2 rounded bg-slate-300 hover:bg-slate-200"
+        >
+          1M
+        </button>
+      </div>
 
-      <div>
+      <div className="px-12">
         <table className="w-full text-center ">
           <thead>
             <tr>

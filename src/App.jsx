@@ -7,29 +7,17 @@ import Search from "./pages/Search";
 import Home from "./pages/Home";
 
 function App() {
-  const [searchData, setSearchData] = useState();
-
-  const fetchSearch = (searchInput) => {
-    const options = { method: "GET", headers: { Accept: "application/json" } };
-
-    fetch(`https://api.opensea.io/api/v1/collection/${searchInput}`, options)
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        setSearchData(data);
-      })
-      .catch((err) => console.error(err));
-  };
+  const [searchInput, setSearchInput] = useState("");
 
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Navbar fetchSearch={fetchSearch} />}>
-          {/* <Route
-            path="/"
-            element={<Search searchData={searchData?.collection} />}
-          /> */}
+        <Route path="/" element={<Navbar setSearchInput={setSearchInput} />}>
           <Route path="/" element={<Home />} />
+          <Route
+            path="/search"
+            element={<Search searchInput={searchInput} />}
+          />
           {/* <Route path="APIs" element={<APIs />} /> */}
         </Route>
       </Routes>
