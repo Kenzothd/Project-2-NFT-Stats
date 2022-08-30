@@ -1,24 +1,27 @@
 import { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 
-function Home({ watchlist, fetchSearch, round2DP }) {
+function Home({ watchlist, fetchSearch, removeWatchlist }) {
   let navigate = useNavigate();
+
   /////////////////////////*State*/////////////////////////
   const [topCollectionStats, setTopCollectionStats] = useState([]);
   const [volume, setVolume] = useState("one_day_volume");
   const [sort, setSort] = useState("up");
 
+  const round2DP = (num) => Math.round(num * 100) / 100;
+
   const Tbody = ({ volume }) => {
     return topCollectionStats?.map((ele, i) => (
-      <tr 
-      key={ele?.created_date}
+      <tr
+        key={ele?.created_date}
         onClick={() => {
           fetchSearch(ele?.slug);
           navigate("../stats");
         }}
         className="cursor-pointer transition ease-in-out hover:scale-110 "
       >
-        <td >{i + 1}</td>
+        <td>{i + 1}</td>
         <td className="flex items-center gap-5 pl-10 ">
           <img src={ele?.image_url} className="w-12 h-12 ml-1" />
           <p className="text-align justify-center">{ele?.name}</p>
@@ -44,23 +47,6 @@ function Home({ watchlist, fetchSearch, round2DP }) {
     ));
   };
   /////////////////////////////////////////////////////////////
-
-  /////////////////*Fetch Top Collections STATS*///////////////
-  // const arrayData = [];
-  // const fetchStats = (param) => {
-  //   const options = { method: "GET", headers: { Accept: "application/json" } };
-
-  //   fetch(`https://api.opensea.io/api/v1/collection/${param}/`, options)
-  //     .then((response) => response?.json())
-  //     .then(
-  //       (data) => data
-  //       // setTopCollectionStats([...topCollectionStats, data]);
-  //       // arrayData.push(data);
-  //       // console.log(arrayData);
-  //     )
-  //     .catch((err) => console.error(err));
-  // };
-  ////////////////////////////////////////////////////////////
 
   ///////////////////*Fetch Top Collections*//////////////////
   const fetchTopCollection = (volume) => {
@@ -271,18 +257,43 @@ function Home({ watchlist, fetchSearch, round2DP }) {
           <label htmlFor="my-drawer-4" className="drawer-overlay"></label>
           <ul className="menu p-4 overflow-y-auto w-80 bg-base-100 text-base-content">
             {/* <!-- Sidebar content here --> */}
-            <li>
-              <a>Sidebar Item 1</a>
-            </li>
-            <li>
-              <a>Sidebar Item 2</a>
-            </li>
-            {watchlist.map((ele) => (
-              <li>
-                <Link to="/search" key={ele.slug}>
-                  {ele.name}
-                </Link>
-              </li>
+            {watchlist?.map((ele) => (
+              <div
+                key={ele?.slug}
+                className="flex justify-between items-center gap-2 border-2 border-solid border-black rounded-2xl border-opacity-30 my-1 pr-2"
+              >
+                <li className="w-full  ">
+                  <p
+                    onClick={() => {
+                      fetchSearch(ele?.slug);
+                      navigate("../stats");
+                    }}
+                  >
+                    {ele?.name}
+                  </p>
+                </li>
+
+                <button
+                  className="hover:bg-slate-200 rounded"
+                  value={ele?.name}
+                  onClick={removeWatchlist}
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth="1.5"
+                    stroke="currentColor"
+                    className="w-6 h-6 pointer-events-none"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"
+                    />
+                  </svg>
+                </button>
+              </div>
             ))}
           </ul>
         </div>

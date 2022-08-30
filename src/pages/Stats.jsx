@@ -74,6 +74,9 @@ function Stats({ watchlist, searchData, setWatchlist }) {
           <p>
             Average Price:<span>{searchData?.stats?.average_price}</span>
           </p>
+          <p>
+            Floor Price:<span>{searchData?.stats?.floor_price}</span>
+          </p>
         </div>
       </div>
     </>

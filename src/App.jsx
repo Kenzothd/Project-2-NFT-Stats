@@ -11,8 +11,6 @@ function App() {
   const [searchData, setSearchData] = useState({});
   const [watchlist, setWatchlist] = useState([]);
 
-  const round2DP = (num) => Math.round(num * 100) / 100;
-
   const fetchSearch = (searchInput) => {
     const options = { method: "GET", headers: { Accept: "application/json" } };
 
@@ -24,7 +22,10 @@ function App() {
       ?.catch((err) => console.error(err));
   };
 
-  console.log(watchlist);
+  const removeWatchlist = (event) => {
+    const newArray = watchlist.filter((ele) => ele.name !== event.target.value);
+    setWatchlist([...newArray]);
+  };
 
   return (
     <BrowserRouter>
@@ -45,7 +46,7 @@ function App() {
               <Home
                 watchlist={watchlist}
                 fetchSearch={fetchSearch}
-                round2DP={round2DP}
+                removeWatchlist={removeWatchlist}
               />
             }
           />
@@ -56,7 +57,6 @@ function App() {
                 setWatchlist={setWatchlist}
                 watchlist={watchlist}
                 searchData={searchData}
-                round2DP={round2DP}
               />
             }
           />
@@ -66,8 +66,7 @@ function App() {
             element={
               <Watchlist
                 watchlist={watchlist}
-                setWatchlist={setWatchlist}
-                round2DP={round2DP}
+                removeWatchlist={removeWatchlist}
               />
             }
           />
