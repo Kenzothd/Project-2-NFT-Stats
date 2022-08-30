@@ -10,14 +10,15 @@ function Home({ watchlist, fetchSearch, round2DP }) {
 
   const Tbody = ({ volume }) => {
     return topCollectionStats?.map((ele, i) => (
-      <tr
+      <tr 
+      key={ele?.created_date}
         onClick={() => {
           fetchSearch(ele?.slug);
           navigate("../stats");
         }}
         className="cursor-pointer transition ease-in-out hover:scale-110 "
       >
-        <td key={ele?.created_date}>{i + 1}</td>
+        <td >{i + 1}</td>
         <td className="flex items-center gap-5 pl-10 ">
           <img src={ele?.image_url} className="w-12 h-12 ml-1" />
           <p className="text-align justify-center">{ele?.name}</p>
