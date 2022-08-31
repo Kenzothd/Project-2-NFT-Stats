@@ -9,6 +9,7 @@ import Watchlist from "./pages/Watchlist";
 
 function App() {
   const [searchData, setSearchData] = useState({});
+  const [tradeHistory, setTradeHistory] = useState([]);
   const [watchlist, setWatchlist] = useState([]);
 
   const fetchSearch = (searchInput) => {
@@ -17,9 +18,58 @@ function App() {
     fetch(`https://api.opensea.io/api/v1/collection/${searchInput}`, options)
       ?.then((response) => response.json())
       ?.then((data) => {
-        setSearchData(data.collection);
+        setSearchData(data?.collection);
+
+        const options = {
+          method: "GET",
+          headers: {
+            Accept: "application/json",
+            "X-API-Key":
+              "Im6egiFrpizkUoiydWVBFC4aSc9s4W6mffarvWRk7aGX5JW1NPLoTDHJhdHy4ink",
+          },
+        };
+
+        fetch(
+          `https://deep-index.moralis.io/api/v2/nft/${data?.collection?.primary_asset_contracts?.[0]?.address}/trades?chain=eth&marketplace=opensea`,
+          options
+        )
+          .then((response) => response.json())
+          .then((data) => {
+            //*Map and set trade history[{date, price, datewithtime}]*//
+            console.log(data?.result?.[0]);
+            const filteredData = data?.result?.map((ele) => {
+              let price =
+                Math.round(ele?.price * Math.pow(10, -18) * 100) / 100;
+              return {
+                dateTimeNum: ele.block_timestamp
+                  .split("")
+                  .slice(0, 19)
+                  .filter((ele) => ele !== "-" && ele !== "T" && ele !== ":")
+                  .join(""),
+                price: price,
+                dateWithTime: ele.block_timestamp
+                  .split("")
+                  .slice(0, 19)
+                  .join(""),
+              };
+            });
+
+            filteredData?.sort((a, b) => a?.dateTimeNum - b?.dateTimeNum);
+
+            setTradeHistory(filteredData);
+          })
+          .catch((err) => console.error(err));
       })
       ?.catch((err) => console.error(err));
+  };
+
+  const options = {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "X-API-Key":
+        "Im6egiFrpizkUoiydWVBFC4aSc9s4W6mffarvWRk7aGX5JW1NPLoTDHJhdHy4ink",
+    },
   };
 
   const removeWatchlist = (event) => {
@@ -63,6 +113,7 @@ function App() {
                   watchlist={watchlist}
                   searchData={searchData}
                   removeWatchlist={removeWatchlist}
+                  tradeHistory={tradeHistory}
                 />
               }
             />

@@ -5,7 +5,7 @@ function Watchlist({ watchlist, removeWatchlist, fetchSearch }) {
   let navigate = useNavigate();
   return (
     <>
-      <body className="bg-gray-800 h-screen">
+      <div className="bg-gray-800 h-screen">
         <div className="flex flex-col gap-5 py-16 font-poppins text-white">
           <h1 className="text-center font-bold text-3xl pb-10">WATCHLIST</h1>
           {watchlist?.map((ele) => (
@@ -50,7 +50,7 @@ function Watchlist({ watchlist, removeWatchlist, fetchSearch }) {
             </div>
           ))}
         </div>
-      </body>
+      </div>
     </>
   );
 }

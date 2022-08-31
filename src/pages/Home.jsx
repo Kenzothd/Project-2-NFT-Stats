@@ -9,7 +9,6 @@ function Home({ watchlist, fetchSearch, removeWatchlist }) {
   const [topCollectionStats, setTopCollectionStats] = useState([]);
   const [volume, setVolume] = useState("one_day_volume");
   const [sort, setSort] = useState("up");
-  const [caroPage, setCaroPage] = useState(0);
 
   const round2DP = (num) => Math.round(num * 100) / 100;
 
@@ -51,16 +50,18 @@ function Home({ watchlist, fetchSearch, removeWatchlist }) {
   /////////////////////////////////////////////////////////////
 
   ///////////////////*Fetch Top Collections*//////////////////
-  const fetchTopCollection = (volume) => {
+  const fetchTopCollection = (Vol, volume = "one_day_volume") => {
     const options = {
       method: "GET",
       headers: {
         Accept: "application/json",
         "X-API-KEY": "c745cde0-2b5d-4ad3-8b93-e77d77c56f3e",
+
+        "x-bypass-cache": true,
       },
     };
     fetch(
-      `https://api.modulenft.xyz/api/v1/opensea/collection/rankings?sort_by=${volume}&count=10&offset=0`,
+      `https://api.modulenft.xyz/api/v1/opensea/collection/rankings?sort_by=${Vol}&count=10&offset=0`,
       options
     )
       .then((response) => response.json())
@@ -83,7 +84,13 @@ function Home({ watchlist, fetchSearch, removeWatchlist }) {
         Promise.all(requests)
           .then((responses) => Promise.all(responses.map((r) => r.json())))
           .then((datas) => {
-            const collectionsStats = datas.map((ele) => ele.collection);
+            const arrayVolumeSort = datas.sort(
+              (a, b) =>
+                b?.collection?.stats?.[volume] - a?.collection?.stats?.[volume]
+            );
+            const collectionsStats = arrayVolumeSort?.map(
+              (ele) => ele?.collection
+            );
             setTopCollectionStats(collectionsStats);
           })
           .catch((err) => console.error(err));
@@ -104,10 +111,10 @@ function Home({ watchlist, fetchSearch, removeWatchlist }) {
   const handlerFPSort = () => {
     switch (sort) {
       case "up":
-        const arraySort = topCollectionStats.sort(
+        const arrayFloorSort = topCollectionStats.sort(
           (a, b) => a.stats.floor_price - b.stats.floor_price
         );
-        setTopCollectionStats([...arraySort]);
+        setTopCollectionStats([...arrayFloorSort]);
         Tbody(volume);
         setSort("down");
         break;
@@ -124,15 +131,15 @@ function Home({ watchlist, fetchSearch, removeWatchlist }) {
   const handlerVol = (event) => {
     switch (event.target.innerText) {
       case "1D":
-        fetchTopCollection("ONE_DAY_VOLUME");
+        fetchTopCollection("ONE_DAY_VOLUME", "one_day_volume");
         setVolume("one_day_volume");
         break;
       case "7D":
-        fetchTopCollection("SEVEN_DAY_VOLUME");
+        fetchTopCollection("SEVEN_DAY_VOLUME", "seven_day_volume");
         setVolume("seven_day_volume");
         break;
       case "30D":
-        fetchTopCollection("THIRTY_DAY_VOLUME");
+        fetchTopCollection("THIRTY_DAY_VOLUME", "thirty_day_volume");
         setVolume("thirty_day_volume");
         break;
     }
@@ -142,7 +149,7 @@ function Home({ watchlist, fetchSearch, removeWatchlist }) {
 
   return (
     <>
-      <body className="bg-gray-800 h-screen">
+      <div className="bg-gray-800 h-screen">
         <div className="drawer drawer-end">
           <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
           <div className="drawer-content">
@@ -266,7 +273,7 @@ function Home({ watchlist, fetchSearch, removeWatchlist }) {
             </ul>
           </div>
         </div>
-      </body>
+      </div>
     </>
   );
 }
