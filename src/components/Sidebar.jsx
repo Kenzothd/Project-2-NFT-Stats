@@ -1,7 +1,7 @@
 function Sidebar({ watchlist, removeWatchlist }) {
   return (
     <>
-      <h2 className="font-semibold">Watchlist</h2>
+      <h2 className="text-lg font-bold">Watchlist</h2>
       {watchlist?.map((ele) => (
         <div
           key={ele?.slug}

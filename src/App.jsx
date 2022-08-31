@@ -73,6 +73,7 @@ function App() {
                 <Watchlist
                   watchlist={watchlist}
                   removeWatchlist={removeWatchlist}
+                  fetchSearch={fetchSearch}
                 />
               }
             />
