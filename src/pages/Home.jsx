@@ -1,3 +1,4 @@
+import { Sidebar } from "phosphor-react";
 import { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 
@@ -144,7 +145,7 @@ function Home({ watchlist, fetchSearch, removeWatchlist }) {
         <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content">
           {/* <!-- Page content here --> */}
-          <div className="px-10">
+          <div className="px-10 relative">
             <div className="text-center">
               <button
                 onClick={handlerVol}
@@ -184,7 +185,7 @@ function Home({ watchlist, fetchSearch, removeWatchlist }) {
                           </button>
                         </th>
                         <th>Volume</th>
-                        <th>% Unique Owner</th>
+                        <th>Unique Owner(%)</th>
                       </tr>
                     </thead>
 
@@ -193,53 +194,39 @@ function Home({ watchlist, fetchSearch, removeWatchlist }) {
                     </tbody>
                   </table>
                 </div>
-                <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                  <a href="#slide4" className="btn btn-circle">
+                <div className="">
+                  <a
+                    href="#slide2"
+                    className=" absolute btn btn-circle transform-y-1/2  top-1/2 left-5"
+                  >
                     ❮
                   </a>
-                  <a href="#slide2" className="btn btn-circle">
+                  <a
+                    href="#slide2"
+                    className="absolute btn btn-circle tranform-y-1/2 top-1/2 right-5"
+                  >
                     ❯
                   </a>
                 </div>
               </div>
               <div id="slide2" className="carousel-item relative w-full">
-                <img
-                  src="https://placeimg.com/800/200/arch"
-                  className="w-full"
-                />
-                <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                  <a href="#slide1" className="btn btn-circle">
-                    ❮
-                  </a>
-                  <a href="#slide3" className="btn btn-circle">
-                    ❯
-                  </a>
+                <div className="text-center mx-auto py-10">
+                  <img
+                    src="https://placeimg.com/800/200/arch"
+                    className="w-full"
+                  />
                 </div>
-              </div>
-              <div id="slide3" className="carousel-item relative w-full">
-                <img
-                  src="https://placeimg.com/800/200/arch"
-                  className="w-full"
-                />
-                <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                  <a href="#slide2" className="btn btn-circle">
+                <div className="">
+                  <a
+                    href="#slide1"
+                    className="btn btn-circle absolute btn btn-circle transform-y-1/2  top-1/2 left-5"
+                  >
                     ❮
                   </a>
-                  <a href="#slide4" className="btn btn-circle">
-                    ❯
-                  </a>
-                </div>
-              </div>
-              <div id="slide4" className="carousel-item relative w-full">
-                <img
-                  src="https://placeimg.com/800/200/arch"
-                  className="w-full"
-                />
-                <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                  <a href="#slide3" className="btn btn-circle">
-                    ❮
-                  </a>
-                  <a href="#slide1" className="btn btn-circle">
+                  <a
+                    href="#slide1"
+                    className="btn btn-circle absolute btn btn-circle transform-y-1/2  top-1/2 right-5"
+                  >
                     ❯
                   </a>
                 </div>
@@ -247,7 +234,7 @@ function Home({ watchlist, fetchSearch, removeWatchlist }) {
             </div>
             <label
               htmlFor="my-drawer-4"
-              className="drawer-button btn btn-outline btn-info"
+              className="drawer-button btn btn-outline btn-info absolute right-5 bottom--1 mb-10"
             >
               Open Watchlist
             </label>
@@ -257,44 +244,7 @@ function Home({ watchlist, fetchSearch, removeWatchlist }) {
           <label htmlFor="my-drawer-4" className="drawer-overlay"></label>
           <ul className="menu p-4 overflow-y-auto w-80 bg-base-100 text-base-content">
             {/* <!-- Sidebar content here --> */}
-            {watchlist?.map((ele) => (
-              <div
-                key={ele?.slug}
-                className="flex justify-between items-center gap-2 border-2 border-solid border-black rounded-2xl border-opacity-30 my-1 pr-2"
-              >
-                <li className="w-full  ">
-                  <p
-                    onClick={() => {
-                      fetchSearch(ele?.slug);
-                      navigate("../stats");
-                    }}
-                  >
-                    {ele?.name}
-                  </p>
-                </li>
-
-                <button
-                  className="hover:bg-slate-200 rounded"
-                  value={ele?.name}
-                  onClick={removeWatchlist}
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth="1.5"
-                    stroke="currentColor"
-                    className="w-6 h-6 pointer-events-none"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"
-                    />
-                  </svg>
-                </button>
-              </div>
-            ))}
+            <Sidebar watchlist={watchlist} />
           </ul>
         </div>
       </div>

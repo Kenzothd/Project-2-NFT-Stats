@@ -28,51 +28,58 @@ function App() {
   };
 
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <Navbar fetchSearch={fetchSearch} setSearchData={setSearchData} />
-          }
-        >
+    <>
+      <BrowserRouter>
+        <Routes>
           <Route
-            index
-            element={<Home watchlist={watchlist} fetchSearch={fetchSearch} />}
-          />
-          <Route
-            path="/home"
+            path="/"
             element={
-              <Home
-                watchlist={watchlist}
+              <Navbar
                 fetchSearch={fetchSearch}
-                removeWatchlist={removeWatchlist}
-              />
-            }
-          />
-          <Route
-            path="/stats"
-            element={
-              <Stats
-                setWatchlist={setWatchlist}
+                setSearchData={setSearchData}
                 watchlist={watchlist}
-                searchData={searchData}
               />
             }
-          />
-          {/* <Route path="APIs" element={<APIs />} /> */}
-          <Route
-            path="/watchlist"
-            element={
-              <Watchlist
-                watchlist={watchlist}
-                removeWatchlist={removeWatchlist}
-              />
-            }
-          />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+          >
+            <Route
+              index
+              element={<Home watchlist={watchlist} fetchSearch={fetchSearch} />}
+            />
+            <Route
+              path="/home"
+              element={
+                <Home
+                  watchlist={watchlist}
+                  fetchSearch={fetchSearch}
+                  removeWatchlist={removeWatchlist}
+                />
+              }
+            />
+            <Route
+              path="/stats"
+              element={
+                <Stats
+                  setWatchlist={setWatchlist}
+                  watchlist={watchlist}
+                  searchData={searchData}
+                  removeWatchlist={removeWatchlist}
+                />
+              }
+            />
+            {/* <Route path="APIs" element={<APIs />} /> */}
+            <Route
+              path="/watchlist"
+              element={
+                <Watchlist
+                  watchlist={watchlist}
+                  removeWatchlist={removeWatchlist}
+                />
+              }
+            />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </>
   );
 }
 

@@ -21,6 +21,7 @@ function Navbar({ fetchSearch }) {
       navigate("../stats");
     }
   };
+
   ///////////////////////////////////
 
   //tbc for mediaquery
