@@ -1,4 +1,4 @@
-function Sidebar() {
+function Sidebar({ watchlist, removeWatchlist }) {
   return (
     <>
       <h2 className="font-semibold">Watchlist</h2>

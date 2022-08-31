@@ -1,6 +1,6 @@
-import { Sidebar } from "phosphor-react";
 import { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import Sidebar from "../components/Sidebar";
 
 function Home({ watchlist, fetchSearch, removeWatchlist }) {
   let navigate = useNavigate();
@@ -244,7 +244,7 @@ function Home({ watchlist, fetchSearch, removeWatchlist }) {
           <label htmlFor="my-drawer-4" className="drawer-overlay"></label>
           <ul className="menu p-4 overflow-y-auto w-80 bg-base-100 text-base-content">
             {/* <!-- Sidebar content here --> */}
-            <Sidebar watchlist={watchlist} />
+            <Sidebar watchlist={watchlist} removeWatchlist={removeWatchlist} />
           </ul>
         </div>
       </div>

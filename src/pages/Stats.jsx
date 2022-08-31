@@ -1,4 +1,4 @@
-import { Sidebar } from "phosphor-react";
+import Sidebar from "../components/Sidebar";
 import { useState, useEffect } from "react";
 
 function Stats({ watchlist, searchData, setWatchlist, removeWatchlist }) {
@@ -105,7 +105,7 @@ function Stats({ watchlist, searchData, setWatchlist, removeWatchlist }) {
           <label htmlFor="my-drawer-4" className="drawer-overlay"></label>
           <ul className="menu p-4 overflow-y-auto w-80 bg-base-100 text-base-content">
             {/* <!-- Sidebar content here --> */}
-            <Sidebar watchlist={watchlist} />
+            <Sidebar watchlist={watchlist} removeWatchlist={removeWatchlist} />
           </ul>
         </div>
       </div>
