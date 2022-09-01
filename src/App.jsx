@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import reactLogo from "./assets/react.svg";
 import "./App.css";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
@@ -13,7 +13,7 @@ function App() {
   const [tradeHistory, setTradeHistory] = useState([]);
   const [watchlist, setWatchlist] = useState([]);
 
-  const fetchSearch = (searchInput) => {
+  const fetchSearch = (searchInput = "azuki") => {
     const options = { method: "GET", headers: { Accept: "application/json" } };
 
     fetch(`https://api.opensea.io/api/v1/collection/${searchInput}`, options)
@@ -68,6 +68,10 @@ function App() {
       ?.catch((err) => console.error(err));
   };
 
+  useEffect(() => {
+    fetchSearch();
+  }, []);
+
   console.log("search data", searchData);
 
   const options = {
@@ -105,11 +109,7 @@ function App() {
             <Route
               path="/home"
               element={
-                <Home
-                  watchlist={watchlist}
-                  fetchSearch={fetchSearch}
-                  removeWatchlist={removeWatchlist}
-                />
+                <Home fetchSearch={fetchSearch} tradeHistory={tradeHistory} />
               }
             />
             <Route
@@ -134,16 +134,7 @@ function App() {
                 />
               }
             />
-            <Route
-              path="/topmarketcap"
-              element={
-                <TopMarketCap
-                  watchlist={watchlist}
-                  fetchSearch={fetchSearch}
-                  removeWatchlist={removeWatchlist}
-                />
-              }
-            />
+            <Route path="/topmarketcap" element={<TopMarketCap />} />
           </Route>
         </Routes>
       </BrowserRouter>

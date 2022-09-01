@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import LineChart from "../components/LineChart";
 import Sidebar from "../components/Sidebar";
 
-function Home({ watchlist, fetchSearch, removeWatchlist }) {
+function Home({ fetchSearch, tradeHistory }) {
   let navigate = useNavigate();
 
   /////////////////////////*State*/////////////////////////
@@ -152,191 +153,211 @@ function Home({ watchlist, fetchSearch, removeWatchlist }) {
 
   return (
     <>
-      <div className="bg-gray-750 h-screen">
-        <div className="drawer drawer-end">
-          <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
-          <div className="drawer-content">
-            {/* <!-- Page content here --> */}
-            <div className="px-10 py-20 flex flex-col gap-10 relative ">
-              <div className="text-center mb-20 ">
-                <p className="text-6xl font-bold text-white">
-                  Best <span className="text-blue-600 italic">NFT</span> Stats
-                  Tool
+      <div className="px-10 py-20 flex flex-col gap-32 relative ">
+        <div className="text-center italic">
+          <p className="text-6xl font-bold text-white">
+            Best <span className="text-blue-600 ">NFT</span> Stats Tool
+          </p>
+          <p className="text-6xl font-bold text-white">
+            {" "}
+            with Real-Time NFT Data
+          </p>
+        </div>
+
+        <div className="mx-48">
+          <div className="carousel carousel-center w11/12 bg-white  rounded-box text-center space-x-10 px-10 ">
+            <div id="slide1" className="carousel-item relative w-full">
+              <div className="text-center mx-auto py-10">
+                <p className="text-5xl font-bold text-black mb-10">
+                  Top Collections
                 </p>
-              </div>
-
-              <div className="mx-48">
-                <div className="carousel carousel-center w11/12 bg-white  rounded-box text-center space-x-10 px-10 ">
-                  <div id="slide1" className="carousel-item relative w-full">
-                    <div className="text-center mx-auto py-10">
-                      <p className="text-5xl font-bold text-black mb-10">
-                        Top Collections
-                      </p>
-                      <div className="text-white flex items-center justify-center pb-5">
-                        <p className="font-semibold text-black text-xl">
-                          Volume:{" "}
-                        </p>
-                        <button
-                          onClick={handlerVol}
-                          className="font-semibold text-white border-solid border-2 border-black p-1 px-2 m-2 w-16 bg-slate-500 bg-opacity-90 rounded hover:bg-slate-400"
-                        >
-                          1D
-                        </button>
-                        <button
-                          onClick={handlerVol}
-                          className="font-semibold text-white border-solid border-2 border-black p-1 px-2 m-2 w-16 bg-slate-500 bg-opacity-90 rounded hover:bg-slate-400"
-                        >
-                          7D
-                        </button>
-                        <button
-                          onClick={handlerVol}
-                          className="font-semibold text-white border-solid border-2 border-black p-1 px-2 m-2 w-16 bg-slate-500 bg-opacity-90 rounded hover:bg-slate-400"
-                        >
-                          30D
-                        </button>
-                      </div>
-                      <table className="border-separate border-spacing-x-4 table-auto">
-                        <thead>
-                          <tr className="p-2 text-lg ">
-                            <th> </th>
-                            <th>Collection</th>
-                            <th>
-                              Floor Price
-                              <button
-                                onClick={() => handlerSort("floor_price")}
-                                className="border-solid border-2 rounded border-black"
-                              >
-                                sort
-                              </button>
-                            </th>
-                            <th>
-                              Volume
-                              <button
-                                onClick={() => handlerSort(volume)}
-                                className="border-solid border-2 rounded border-black"
-                              >
-                                sort
-                              </button>
-                            </th>
-                            <th>Unique Owner(%)</th>
-                          </tr>
-                        </thead>
-
-                        <tbody>{tbody(volume)}</tbody>
-                      </table>
-                      <p className="font-semibold">page-1</p>
-                    </div>
-                    <div className="">
-                      <a
-                        href="#slide2"
-                        className=" absolute btn btn-circle transform-y-1/2  top-1/2 left-0"
-                      >
-                        ❮
-                      </a>
-                      <a
-                        href="#slide2"
-                        className="absolute btn btn-circle tranform-y-1/2 top-1/2 right-0"
-                      >
-                        ❯
-                      </a>
-                    </div>
-                  </div>
-
-                  <div id="slide2" className="carousel-item relative w-full">
-                    <div className="text-center mx-auto py-10">
-                      <p className="text-5xl font-bold text-black mb-10">
-                        Top Collections
-                      </p>
-                      <div className="text-white flex items-center justify-center pb-5">
-                        <p className="font-semibold text-black text-xl">
-                          Volume:{" "}
-                        </p>
-                        <button
-                          onClick={handlerVol}
-                          className="font-semibold text-white border-solid border-2 border-black p-1 px-2 m-2 w-16 bg-slate-500 bg-opacity-90 rounded hover:bg-slate-400"
-                        >
-                          1D
-                        </button>
-                        <button
-                          onClick={handlerVol}
-                          className="font-semibold text-white border-solid border-2 border-black p-1 px-2 m-2 w-16 bg-slate-500 bg-opacity-90 rounded hover:bg-slate-400"
-                        >
-                          7D
-                        </button>
-                        <button
-                          onClick={handlerVol}
-                          className="font-semibold text-white border-solid border-2 border-black p-1 px-2 m-2 w-16 bg-slate-500 bg-opacity-90 rounded hover:bg-slate-400"
-                        >
-                          30D
-                        </button>
-                      </div>
-                      <table className="border-separate border-spacing-x-4 ">
-                        <thead>
-                          <tr className="p-2 text-lg ">
-                            <th> </th>
-                            <th>Collection</th>
-                            <th>
-                              Floor Price
-                              <button
-                                onClick={() => handlerSort("floor_price")}
-                                className="border-solid border-2 rounded border-black"
-                              >
-                                sort
-                              </button>
-                            </th>
-                            <th>
-                              Volume
-                              <button
-                                onClick={() => handlerSort(volume)}
-                                className="border-solid border-2 rounded border-black"
-                              >
-                                sort
-                              </button>
-                            </th>
-                            <th>Unique Owner(%)</th>
-                          </tr>
-                        </thead>
-
-                        <tbody>{tbody(volume, 10, 20, 11)}</tbody>
-                      </table>
-                      <p className="font-semibold">page-2</p>
-                    </div>
-
-                    <div className="">
-                      <a
-                        href="#slide1"
-                        className="btn btn-circle absolute btn btn-circle transform-y-1/2  top-1/2 left-0"
-                      >
-                        ❮
-                      </a>
-                      <a
-                        href="#slide1"
-                        className="btn btn-circle absolute btn btn-circle transform-y-1/2  top-1/2 right-0"
-                      >
-                        ❯
-                      </a>
-                    </div>
-                  </div>
+                <div className="text-white flex items-center justify-center pb-5">
+                  <p className="font-semibold text-black text-xl">Volume: </p>
+                  <button
+                    onClick={handlerVol}
+                    className="font-semibold text-white border-solid border-2 border-black p-1 px-2 m-2 w-16 bg-slate-500 bg-opacity-90 rounded hover:bg-slate-400"
+                  >
+                    1D
+                  </button>
+                  <button
+                    onClick={handlerVol}
+                    className="font-semibold text-white border-solid border-2 border-black p-1 px-2 m-2 w-16 bg-slate-500 bg-opacity-90 rounded hover:bg-slate-400"
+                  >
+                    7D
+                  </button>
+                  <button
+                    onClick={handlerVol}
+                    className="font-semibold text-white border-solid border-2 border-black p-1 px-2 m-2 w-16 bg-slate-500 bg-opacity-90 rounded hover:bg-slate-400"
+                  >
+                    30D
+                  </button>
                 </div>
+                <table className="border-separate border-spacing-x-4 table-auto">
+                  <thead>
+                    <tr className="p-2 text-lg ">
+                      <th> </th>
+                      <th>Collection</th>
+                      <th>
+                        Floor Price
+                        <button
+                          onClick={() => handlerSort("floor_price")}
+                          className="border-solid border-2 rounded border-black"
+                        >
+                          sort
+                        </button>
+                      </th>
+                      <th>
+                        Volume
+                        <button
+                          onClick={() => handlerSort(volume)}
+                          className="border-solid border-2 rounded border-black"
+                        >
+                          sort
+                        </button>
+                      </th>
+                      <th>Unique Owner(%)</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>{tbody(volume)}</tbody>
+                </table>
+                <p className="font-semibold">page-1</p>
               </div>
-              <label
-                htmlFor="my-drawer-4"
-                className="drawer-button btn btn-outline btn-info absolute right-10 top-2 fixed"
-              >
-                Open Watchlist
-              </label>
+              <div className="">
+                <a
+                  href="#slide2"
+                  className=" absolute btn btn-circle transform-y-1/2  top-1/2 left-0"
+                >
+                  ❮
+                </a>
+                <a
+                  href="#slide2"
+                  className="absolute btn btn-circle tranform-y-1/2 top-1/2 right-0"
+                >
+                  ❯
+                </a>
+              </div>
+            </div>
+
+            <div id="slide2" className="carousel-item relative w-full">
+              <div className="text-center mx-auto py-10">
+                <p className="text-5xl font-bold text-black mb-10">
+                  Top Collections
+                </p>
+                <div className="text-white flex items-center justify-center pb-5">
+                  <p className="font-semibold text-black text-xl">Volume: </p>
+                  <button
+                    onClick={handlerVol}
+                    className="font-semibold text-white border-solid border-2 border-black p-1 px-2 m-2 w-16 bg-slate-500 bg-opacity-90 rounded hover:bg-slate-400"
+                  >
+                    1D
+                  </button>
+                  <button
+                    onClick={handlerVol}
+                    className="font-semibold text-white border-solid border-2 border-black p-1 px-2 m-2 w-16 bg-slate-500 bg-opacity-90 rounded hover:bg-slate-400"
+                  >
+                    7D
+                  </button>
+                  <button
+                    onClick={handlerVol}
+                    className="font-semibold text-white border-solid border-2 border-black p-1 px-2 m-2 w-16 bg-slate-500 bg-opacity-90 rounded hover:bg-slate-400"
+                  >
+                    30D
+                  </button>
+                </div>
+                <table className="border-separate border-spacing-x-4 ">
+                  <thead>
+                    <tr className="p-2 text-lg ">
+                      <th> </th>
+                      <th>Collection</th>
+                      <th>
+                        Floor Price
+                        <button
+                          onClick={() => handlerSort("floor_price")}
+                          className="border-solid border-2 rounded border-black"
+                        >
+                          sort
+                        </button>
+                      </th>
+                      <th>
+                        Volume
+                        <button
+                          onClick={() => handlerSort(volume)}
+                          className="border-solid border-2 rounded border-black"
+                        >
+                          sort
+                        </button>
+                      </th>
+                      <th>Unique Owner(%)</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>{tbody(volume, 10, 20, 11)}</tbody>
+                </table>
+                <p className="font-semibold">page-2</p>
+              </div>
+
+              <div className="">
+                <a
+                  href="#slide1"
+                  className="btn btn-circle absolute btn btn-circle transform-y-1/2  top-1/2 left-0"
+                >
+                  ❮
+                </a>
+                <a
+                  href="#slide1"
+                  className="btn btn-circle absolute btn btn-circle transform-y-1/2  top-1/2 right-0"
+                >
+                  ❯
+                </a>
+              </div>
             </div>
           </div>
-          <div className="drawer-side">
-            <label htmlFor="my-drawer-4" className="drawer-overlay"></label>
-            <ul className="menu p-4 overflow-y-auto w-80 bg-base-100 text-base-content ">
-              {/* <!-- Sidebar content here --> */}
-              <Sidebar
-                watchlist={watchlist}
-                removeWatchlist={removeWatchlist}
-              />
-            </ul>
+        </div>
+
+        <div className="mx-56">
+          <p className="font-bold text-white text-5xl text-center my-20 italic">
+            Track your Favourite Collection
+          </p>
+          <p className="font-bold text-xl">
+            Lastest Transaction of Collection From Opensea
+          </p>
+          <LineChart tradeHistory={tradeHistory} />
+        </div>
+
+        <div className="mx-56 text-center">
+          <p className="font-bold text-white text-5xl text-center my-20 italic">
+            Add Favourite Collection to Watchlist
+          </p>
+          <div className="flex gap-10 justify-center">
+            <img
+              src="../src/assets/img/Watchlist_1.png "
+              className="h-72 transition ease-in-out hover:scale-125 cursor-zoom-in"
+            />
+            <img
+              src="../src/assets/img/Watchlist_2.png"
+              className="h-72 w-60 transition ease-in-out hover:scale-150 cursor-zoom-in"
+            />
           </div>
+          <img
+            src="../src/assets/img/Watchlist_3.png"
+            className=" w-11/12 object-cover transition ease-in-out hover:scale-125 cursor-zoom-in mx-auto p-10 mt-20"
+          />
+        </div>
+
+        <div className="mx-56 text-center">
+          <p className="font-bold text-white text-5xl text-center my-10 italic">
+            Search for Collection Slug
+          </p>
+
+          <img
+            src="../src/assets/img/Search_Slug2.png"
+            className=" w-1/2 object-cover transition ease-in-out hover:scale-105 cursor-zoom-in mx-auto mt-10"
+          />
+          <img
+            src="../src/assets/img/Search_Slug.png"
+            className="transition ease-in-out hover:scale-105 cursor-zoom-in mx-auto p-10"
+          />
         </div>
       </div>
     </>

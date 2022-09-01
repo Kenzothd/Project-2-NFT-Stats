@@ -25,7 +25,7 @@ function Stats({
           <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
           <div className="drawer-content ">
             {/* <!-- Page content here --> */}
-            <div className="px-20 py-16 flex flex-col gap-10 relative ">
+            <div className="px-40 py-16 flex flex-col gap-10 relative ">
               <div className="relative shadow-gray-100 h-30 ">
                 <img
                   className="rounded border-shadow-gray-500 shadow-lg shadow-gray-500 object-cover h-64 w-full bg-white"
@@ -163,7 +163,7 @@ function Stats({
                 </div>
               </div>
 
-              <div id="linechart">
+              <div id="linechart" className="mx-16">
                 <h2 className="text-2xl font-semibold text-white pb-5">
                   Lastest Trade on Opensea
                 </h2>
