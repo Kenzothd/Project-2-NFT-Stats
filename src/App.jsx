@@ -6,6 +6,7 @@ import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Stats from "./pages/Stats";
 import Watchlist from "./pages/Watchlist";
+import TopMarketCap from "./pages/TopMarketCap";
 
 function App() {
   const [searchData, setSearchData] = useState({});
@@ -37,6 +38,7 @@ function App() {
           .then((data) => {
             //*Map and set trade history[{date, price, datewithtime}]*//
             console.log(data?.result?.[0]);
+            console.log(data?.result?.[0]?.block_timestamp.split(""));
             const filteredData = data?.result?.map((ele) => {
               let price =
                 Math.round(ele?.price * Math.pow(10, -18) * 100) / 100;
@@ -54,7 +56,10 @@ function App() {
               };
             });
 
-            filteredData?.sort((a, b) => a?.dateTimeNum - b?.dateTimeNum);
+            console.log(filteredData);
+            filteredData?.sort((a, b) => {
+              Number(a?.dateTimeNum - b?.dateTimeNum);
+            });
 
             setTradeHistory(filteredData);
           })
@@ -117,7 +122,6 @@ function App() {
                 />
               }
             />
-            {/* <Route path="APIs" element={<APIs />} /> */}
             <Route
               path="/watchlist"
               element={
@@ -125,6 +129,16 @@ function App() {
                   watchlist={watchlist}
                   removeWatchlist={removeWatchlist}
                   fetchSearch={fetchSearch}
+                />
+              }
+            />
+            <Route
+              path="/topmarketcap"
+              element={
+                <TopMarketCap
+                  watchlist={watchlist}
+                  fetchSearch={fetchSearch}
+                  removeWatchlist={removeWatchlist}
                 />
               }
             />

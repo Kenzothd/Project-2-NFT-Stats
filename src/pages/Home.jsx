@@ -256,7 +256,7 @@ function Home({ watchlist, fetchSearch, removeWatchlist }) {
               </div>
               <label
                 htmlFor="my-drawer-4"
-                className="drawer-button btn btn-outline btn-info absolute right-10 bottom-0"
+                className="drawer-button btn btn-outline btn-info absolute right-10 top-2 fixed"
               >
                 Open Watchlist
               </label>
@@ -264,7 +264,7 @@ function Home({ watchlist, fetchSearch, removeWatchlist }) {
           </div>
           <div className="drawer-side">
             <label htmlFor="my-drawer-4" className="drawer-overlay"></label>
-            <ul className="menu p-4 overflow-y-auto w-80 bg-base-100 text-base-content">
+            <ul className="menu p-4 overflow-y-auto w-80 bg-base-100 text-base-content ">
               {/* <!-- Sidebar content here --> */}
               <Sidebar
                 watchlist={watchlist}

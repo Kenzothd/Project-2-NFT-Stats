@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import ReactDOM from "react-dom";
 import { Line } from "@ant-design/plots";
 
 const LineChart = ({ tradeHistory }) => {
   const [data, setData] = useState([]);
 
+  console.log(tradeHistory);
   useEffect(() => {
     setData(tradeHistory);
   }, [tradeHistory]);

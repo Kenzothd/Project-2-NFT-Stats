@@ -52,12 +52,12 @@ function Stats({
 
   return (
     <>
-      <div className="bg-gray-800 h-screen">
-        <div className="drawer drawer-end">
+      <div className="bg-gray-700 h-screen ">
+        <div className="drawer drawer-end ">
           <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
-          <div className="drawer-content relative">
+          <div className="drawer-content ">
             {/* <!-- Page content here --> */}
-            <div className="px-20 py-16 flex flex-col gap-10 ">
+            <div className="px-20 py-16 flex flex-col gap-10 relative ">
               <div className="relative shadow-gray-100 h-30 ">
                 <img
                   className="rounded border-shadow-gray-500 shadow-lg shadow-gray-500 object-cover h-64 w-full bg-white"
@@ -80,7 +80,7 @@ function Stats({
                 <div className="absolute right-2 bottom-2">
                   <button
                     onClick={addWatchList}
-                    className="border-2 border-slate-600 border-solid rounded font-poppins bg-slate-100 p-2 transition ease-in-out hover:scale-105 font-semibold text-black"
+                    className="border-2 border-slate-600 border-solid rounded font-poppins bg-blue-900 p-2 transition ease-in-out hover:scale-105 font-semibold text-slate-50 hover:text-white hover:bg-blue-700"
                   >
                     + watchlist
                   </button>
@@ -201,17 +201,20 @@ function Stats({
                 </h2>
                 <LineChart tradeHistory={tradeHistory} />
               </div>
+              <label
+                htmlFor="my-drawer-4"
+                className="drawer-button btn btn-outline absolute btn-info right-10 top-2 mb-5 fixed"
+              >
+                Open Watchlist
+              </label>
             </div>
-            <label
-              htmlFor="my-drawer-4"
-              className="drawer-button btn btn-outline btn-info absolute right-10 "
-            >
-              Open Watchlist
-            </label>
           </div>
 
           <div className="drawer-side">
-            <label htmlFor="my-drawer-4" className="drawer-overlay"></label>
+            <label
+              htmlFor="my-drawer-4"
+              className="drawer-overlay overflow-hidden"
+            ></label>
             <ul className="menu p-4 overflow-y-auto w-80 bg-base-100 text-base-content">
               {/* <!-- Sidebar content here --> */}
               <Sidebar

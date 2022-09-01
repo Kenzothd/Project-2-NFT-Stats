@@ -146,18 +146,15 @@ function Navbar({ fetchSearch }) {
                 </Link>
               </li>
               <li>
-                <a
-                  href="#"
+                <Link
+                  to="/topmarketcap"
                   className="block font-poppins text-base pr-4 pl-3 text-gray-300 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-white md:p-0"
                 >
                   Top Market Cap
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="#"
-                  className="block font-poppins text-base pr-4 pl-3 text-gray-300 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-white md:p-0"
-                >
+                <a className="block font-poppins text-base pr-4 pl-3 text-gray-300 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-white md:p-0">
                   Minting Now
                 </a>
               </li>
