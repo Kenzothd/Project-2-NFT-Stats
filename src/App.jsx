@@ -13,7 +13,7 @@ function App() {
   const [tradeHistory, setTradeHistory] = useState([]);
   const [watchlist, setWatchlist] = useState([]);
 
-  const fetchSearch = (searchInput = "azuki") => {
+  const fetchSearch = (searchInput) => {
     const options = { method: "GET", headers: { Accept: "application/json" } };
 
     fetch(`https://api.opensea.io/api/v1/collection/${searchInput}`, options)
@@ -69,7 +69,7 @@ function App() {
   };
 
   useEffect(() => {
-    fetchSearch();
+    fetchSearch("azuki");
   }, []);
 
   console.log("search data", searchData);
