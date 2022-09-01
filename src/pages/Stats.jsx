@@ -13,42 +13,10 @@ function Stats({
 
   const addWatchList = () => {
     //can't add a collection thats already inside
-    if (
-      watchlist.find(
-        (ele) =>
-          ele.primary_asset_contracts[0] ===
-          searchData.primary_asset_contracts[0]
-      ) === undefined
-    ) {
+    if (watchlist.find((ele) => ele.slug === searchData.slug) === undefined) {
       setWatchlist([...watchlist, searchData]);
     }
   };
-
-  // useEffect(() => {
-  //   const options = {
-  //     method: "GET",
-  //     headers: {
-  //       Accept: "application/json",
-  //       "X-API-KEY": "c745cde0-2b5d-4ad3-8b93-e77d77c56f3e",
-  //     },
-  //   };
-
-  //   fetch(
-  //     // `https://api.modulenft.xyz/api/v1/opensea/analytics/volume-history?type=${searchData?.primary_asset_contracts?.[0]?.address}&size=WEEK&since=2022-07-01T12%253A32%253A07-04%253A00`
-
-  //     "https://api.modulenft.xyz/api/v1/opensea/analytics/volume-history?type=0xed5af388653567af2f388e6224dc7c4b3241c544&size=DAY&since=2022-07-01T12%253A32%253A07-04%253A00",
-  //     {
-  //       method: "GET",
-  //       headers: {
-  //         Accept: "application/json",
-  //         "X-API-KEY": "c745cde0-2b5d-4ad3-8b93-e77d77c56f3e",
-  //       },
-  //     }
-  //   )
-  //     .then((response) => response.json())
-  //     .then((response) => console.log(response))
-  //     .catch((err) => console.error(err));
-  // }, []);
 
   return (
     <>
@@ -80,7 +48,7 @@ function Stats({
                 <div className="absolute right-2 bottom-2">
                   <button
                     onClick={addWatchList}
-                    className="border-2 border-slate-600 border-solid rounded font-poppins bg-blue-900 p-2 transition ease-in-out hover:scale-105 font-semibold text-slate-50 hover:text-white hover:bg-blue-700"
+                    className="font-semibold text-black border-solid border-2 border-black p-2 px-2 m-2 bg-slate-50 bg-opacity-90 rounded hover:bg-slate-100"
                   >
                     + watchlist
                   </button>

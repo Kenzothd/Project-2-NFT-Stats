@@ -26,6 +26,7 @@ const TMCTreemap = ({ top100Collections }) => {
     data,
     colorField: "name",
     theme: "dark",
+    columnStyle: { cursor: "pointer" },
   };
   return <Treemap {...config} />;
 };

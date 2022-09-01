@@ -4,9 +4,26 @@ import { useEffect, useState, useRef } from "react";
 import _ from "lodash";
 
 function Navbar({ fetchSearch }) {
-  const [gwei, setGwei] = useState();
-
+  //////////////*State*//////////////
+  const [gwei, setGwei] = useState("");
   let navigate = useNavigate();
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      fetch(
+        "https://api.etherscan.io/api?module=gastracker&action=gasoracle&apikey"
+      )
+        .then((response) => response?.json())
+        .then((data) => {
+          setGwei(
+            data?.result?.suggestBaseFee
+              ? Math.round(data?.result?.suggestBaseFee)
+              : " "
+          );
+        });
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
 
   ///////////////*Handler*///////////
   const onChange = (event) => {
@@ -30,7 +47,7 @@ function Navbar({ fetchSearch }) {
   return (
     <>
       <nav className="bg-gray-900 border-gray-200 px-2 sm:px-2 py-3 ">
-        <div className="container flex flex-wrap justify-between items-center mx-auto cursor-pointer ">
+        <div className="container flex flex-wrap justify-between items-center mx-auto cursor-default ">
           <div className="flex gap-5">
             <Link to="/home" className="flex items-center">
               <svg
@@ -70,10 +87,7 @@ function Navbar({ fetchSearch }) {
                     Gwei
                   </a>
                 </li>
-                <li className="px-1 text-sm">
-                  {/* {gwei?.result?.ProposeGasPrice} */}
-                  12
-                </li>
+                <li className="px-1 text-sm">{gwei}</li>
               </ul>
             </div>
           </div>
@@ -105,22 +119,17 @@ function Navbar({ fetchSearch }) {
                 size="100"
               />
 
-              {/*
-              KIV TBC
-              <datalist id="data">
-                {searchData?.map((ele) => (
-                  <option value={ele?.collection?.name} />
-                ))}
-              </datalist> */}
-
-              <div className="flex absolute inset-y-0 right-5 items-center pl-3 pointer-events-none">
+              <div
+                className="flex absolute inset-y-0 right-5 items-center pl-3 tooltip tooltip-bottom cursor-help"
+                data-tip="Example: https://opensea.io/collection/.boredapeyachtclub Slug Name: boredapeyachtclub"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
                   strokeWidth="1.5"
                   stroke="currentColor"
-                  className="w-6 h-6"
+                  className="w-6 h-6 pointer-events-none"
                 >
                   <path
                     strokeLinecap="round"
@@ -136,7 +145,7 @@ function Navbar({ fetchSearch }) {
             className=" hidden justify-between items-center w-full md:flex md:w-auto md:order-1"
             id="mobile-menu-2"
           >
-            <ul className="flex flex-col p-4 mt-4 bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-transparent ">
+            <ul className="flex flex-col p-4 mt-4 bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-transparent relative ">
               <li>
                 <Link
                   to="/home"
@@ -154,9 +163,12 @@ function Navbar({ fetchSearch }) {
                 </Link>
               </li>
               <li>
-                <a className="block font-poppins text-base pr-4 pl-3 text-gray-300 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-white md:p-0">
+                <a className="block font-poppins text-base pr-4 pl-3 text-gray-300 rounded md:p-0">
                   Minting Now
                 </a>
+                <span className="absolute bottom-2 right-28 px-1 bg-white rounded bg-opacity-90">
+                  TBC
+                </span>
               </li>
               <li>
                 <Link
