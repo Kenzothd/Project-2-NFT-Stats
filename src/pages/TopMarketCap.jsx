@@ -29,7 +29,7 @@ function TopMarketCap({ watchlist, removeWatchlist }) {
 
   return (
     <>
-      <div className="bg-gray-800 h-screen">
+      <div className="bg-gray-750 h-screen">
         <div className="drawer drawer-end">
           <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
           <div className="drawer-content relative">

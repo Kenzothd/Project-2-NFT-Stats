@@ -3,22 +3,22 @@ import { GasPump } from "phosphor-react";
 import { useEffect, useState, useRef } from "react";
 import _ from "lodash";
 
-function Navbar({ fetchSearch }) {
+function Navbar({ fetchSearch, searchData }) {
   //////////////*State*//////////////
-  const [gwei, setGwei] = useState("");
+  const [gwei, setGwei] = useState(" ");
   let navigate = useNavigate();
 
   useEffect(() => {
     const interval = setInterval(() => {
       fetch(
-        "https://api.etherscan.io/api?module=gastracker&action=gasoracle&apikey"
+        "https://api.etherscan.io/api?module=gastracker&action=gasoracle&apikey=78227RH2MGH83H5CVU1UG7U6XAMYSIE413"
       )
         .then((response) => response?.json())
         .then((data) => {
           setGwei(
             data?.result?.suggestBaseFee
               ? Math.round(data?.result?.suggestBaseFee)
-              : " "
+              : gwei
           );
         });
     }, 5000);
@@ -117,11 +117,15 @@ function Navbar({ fetchSearch }) {
                 className="block p-2 pl-10 pr-0 w-60 text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:text-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600  dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="Search Collection Slug..."
                 size="100"
+                list="browsers"
               />
+              <datalist id="browsers">
+                <option value={searchData?.slug} />
+              </datalist>
 
               <div
                 className="flex absolute inset-y-0 right-5 items-center pl-3 tooltip tooltip-bottom cursor-help"
-                data-tip="Example: https://opensea.io/collection/.boredapeyachtclub Slug Name: boredapeyachtclub"
+                data-tip="Example: https://opensea.io/collection/boredapeyachtclub Slug Name: boredapeyachtclub"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

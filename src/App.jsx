@@ -68,6 +68,8 @@ function App() {
       ?.catch((err) => console.error(err));
   };
 
+  console.log("search data", searchData);
+
   const options = {
     method: "GET",
     headers: {
@@ -91,7 +93,7 @@ function App() {
             element={
               <Navbar
                 fetchSearch={fetchSearch}
-                setSearchData={setSearchData}
+                searchData={searchData}
                 watchlist={watchlist}
               />
             }
