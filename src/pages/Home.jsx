@@ -320,7 +320,7 @@ function Home({ fetchSearch, tradeHistory }) {
             Track your Favourite Collection
           </p>
           <p className="font-bold text-xl">
-            Lastest Transaction of Collection From Opensea
+            Get the Lastest Transaction of Collection From Opensea
           </p>
           <LineChart tradeHistory={tradeHistory} />
         </div>
@@ -356,7 +356,7 @@ function Home({ fetchSearch, tradeHistory }) {
           />
           <img
             src="../src/assets/img/Search_Slug.png"
-            className="transition ease-in-out hover:scale-105 cursor-zoom-in mx-auto p-10"
+            className="transition ease-in-out hover:scale-125 cursor-zoom-in mx-auto p-10"
           />
         </div>
       </div>

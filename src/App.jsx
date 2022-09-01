@@ -95,11 +95,7 @@ function App() {
           <Route
             path="/"
             element={
-              <Navbar
-                fetchSearch={fetchSearch}
-                searchData={searchData}
-                watchlist={watchlist}
-              />
+              <Navbar fetchSearch={fetchSearch} searchData={searchData} />
             }
           >
             <Route
