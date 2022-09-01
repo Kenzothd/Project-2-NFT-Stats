@@ -354,10 +354,12 @@ function Home({ fetchSearch, tradeHistory }) {
           <img
             src="../src/assets/img/Search_Slug2.png"
             className=" w-1/2 object-cover transition ease-in-out hover:scale-105 cursor-zoom-in mx-auto mt-10"
+            alt="search-slug2"
           />
           <img
-            src=".https://www.collater.al/wp-content/uploads/2022/01/bored-ape-collater.al-cover.jpg"
+            src="../src/assets/img/Search_Slug.png"
             className="transition ease-in-out hover:scale-125 cursor-zoom-in mx-auto p-10"
+            alt="search-slug"
           />
         </div>
       </div>
