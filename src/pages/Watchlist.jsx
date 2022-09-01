@@ -5,7 +5,7 @@ function Watchlist({ watchlist, removeWatchlist, fetchSearch }) {
   let navigate = useNavigate();
   return (
     <>
-      <div className="bg-gray-750 h-screen">
+      <div className="bg-gray-800 h-screen">
         <div className="flex flex-col gap-5 py-16 font-poppins text-white ">
           <h1 className="text-center font-bold text-3xl pb-10">WATCHLIST</h1>
           <div className="border-2 border-solid border-slate-400 mx-20 py-10 rounded-3xl h-full flex flex-col gap-10">

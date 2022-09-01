@@ -29,13 +29,15 @@ function TopMarketCap() {
 
   return (
     <>
-      <div className="mx-20 mt-12 h-full text-white">
-        <h1 className=" mb-5 ">
-          <span className="text-3xl font-bold">Top 100 Market Cap</span>
-          <span className="text-md ">(Floor price * Total supply)</span>
-        </h1>
+      <div className="bg-gray-800 h-screen">
+        <div className="bg-gray-800 mx-20 p-12 h-5/6 text-white ">
+          <h1 className=" mb-5 ">
+            <span className="text-3xl font-bold">Top 100 Market Cap</span>
+            <span className="text-md ">(Floor price * Total supply)</span>
+          </h1>
 
-        <TMCTreemap top100Collections={top100Collections} />
+          <TMCTreemap top100Collections={top100Collections} />
+        </div>
       </div>
     </>
   );
