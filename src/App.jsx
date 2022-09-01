@@ -37,8 +37,8 @@ function App() {
           .then((response) => response.json())
           .then((data) => {
             //*Map and set trade history[{date, price, datewithtime}]*//
-            console.log(data?.result?.[0]);
-            console.log(data?.result?.[0]?.block_timestamp.split(""));
+            // console.log(data?.result?.[0]);
+            // console.log(data?.result?.[0]?.block_timestamp.split(""));
             const filteredData = data?.result?.map((ele) => {
               let price =
                 Math.round(ele?.price * Math.pow(10, -18) * 100) / 100;
@@ -56,7 +56,7 @@ function App() {
               };
             });
 
-            console.log(filteredData);
+            // console.log(filteredData);
             filteredData?.sort((a, b) => {
               Number(a?.dateTimeNum - b?.dateTimeNum);
             });
@@ -72,7 +72,7 @@ function App() {
     fetchSearch("azuki");
   }, []);
 
-  console.log("search data", searchData);
+  // console.log("search data", searchData);
 
   const options = {
     method: "GET",

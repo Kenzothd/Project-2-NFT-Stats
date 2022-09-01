@@ -4,7 +4,7 @@ import { Line } from "@ant-design/plots";
 const LineChart = ({ tradeHistory }) => {
   const [data, setData] = useState([]);
 
-  console.log(tradeHistory);
+  //   console.log(tradeHistory);
   useEffect(() => {
     setData(tradeHistory);
   }, [tradeHistory]);

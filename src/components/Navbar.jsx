@@ -21,7 +21,7 @@ function Navbar({ fetchSearch, searchData }) {
               : gwei
           );
         });
-    }, 5000);
+    }, 10000);
     return () => clearInterval(interval);
   }, []);
 

@@ -26,5 +26,18 @@
     "postcss": "^8.4.16",
     "tailwindcss": "^3.1.8",
     "vite": "^3.0.7"
-  }
+  },
+  "main": "vite.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kenzothd/Project-2-NFT-Stats.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Kenzothd/Project-2-NFT-Stats/issues"
+  },
+  "homepage": "https://github.com/Kenzothd/Project-2-NFT-Stats#readme",
+  "description": ""
 }

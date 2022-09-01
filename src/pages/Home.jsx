@@ -73,7 +73,7 @@ function Home({ fetchSearch, tradeHistory }) {
         const topCollections = data?.rankings?.map(
           (ele) => ele?.collection_slug
         );
-        console.log("X top collections", topCollections);
+        // console.log("X top collections", topCollections);
         ////////*Fetch Top Collections STATS*///////
         const options = {
           method: "GET",
@@ -83,7 +83,7 @@ function Home({ fetchSearch, tradeHistory }) {
         let requests = topCollections.map((ele) =>
           fetch(`https://api.opensea.io/api/v1/collection/${ele}/`, options)
         );
-        console.log("request", requests);
+        // console.log("request", requests);
 
         Promise.all(requests)
           .then((responses) => Promise.all(responses.map((r) => r.json())))
@@ -106,7 +106,7 @@ function Home({ fetchSearch, tradeHistory }) {
   useEffect(() => {
     fetchTopCollection("ONE_DAY_VOLUME");
   }, []);
-  console.log("top collection stats", topCollectionStats);
+  // console.log("top collection stats", topCollectionStats);
 
   /////////////////////////////////////////////////////////////
 
