@@ -105,6 +105,7 @@ function Home({ fetchSearch, tradeHistory }) {
   //default home page
   useEffect(() => {
     fetchTopCollection("ONE_DAY_VOLUME");
+    fetchSearch("azuki");
   }, []);
   // console.log("top collection stats", topCollectionStats);
 
@@ -355,7 +356,7 @@ function Home({ fetchSearch, tradeHistory }) {
             className=" w-1/2 object-cover transition ease-in-out hover:scale-105 cursor-zoom-in mx-auto mt-10"
           />
           <img
-            src="../src/assets/img/Search_Slug.png"
+            src=".https://www.collater.al/wp-content/uploads/2022/01/bored-ape-collater.al-cover.jpg"
             className="transition ease-in-out hover:scale-125 cursor-zoom-in mx-auto p-10"
           />
         </div>

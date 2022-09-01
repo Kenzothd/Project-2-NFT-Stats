@@ -68,9 +68,6 @@ function App() {
       ?.catch((err) => console.error(err));
   };
 
-  useEffect(() => {
-    fetchSearch("azuki");
-  }, []);
 
   // console.log("search data", searchData);
 
