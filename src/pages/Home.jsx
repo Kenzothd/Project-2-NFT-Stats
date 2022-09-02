@@ -105,7 +105,7 @@ function Home({ fetchSearch, tradeHistory }) {
   //default home page
   useEffect(() => {
     fetchTopCollection("ONE_DAY_VOLUME");
-    fetchSearch("azuki");
+    fetchSearch();
   }, []);
   // console.log("top collection stats", topCollectionStats);
 

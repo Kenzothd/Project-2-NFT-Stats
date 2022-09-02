@@ -13,7 +13,7 @@ function App() {
   const [tradeHistory, setTradeHistory] = useState([]);
   const [watchlist, setWatchlist] = useState([]);
 
-  const fetchSearch = (searchInput) => {
+  const fetchSearch = (searchInput = "azuki") => {
     const options = { method: "GET", headers: { Accept: "application/json" } };
 
     fetch(`https://api.opensea.io/api/v1/collection/${searchInput}`, options)
@@ -67,7 +67,6 @@ function App() {
       })
       ?.catch((err) => console.error(err));
   };
-
 
   // console.log("search data", searchData);
 
