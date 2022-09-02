@@ -27,10 +27,12 @@ function Stats({
             {/* <!-- Page content here --> */}
             <div className="px-40 py-16 flex flex-col gap-10 relative ">
               <div className="relative shadow-gray-100 h-30 ">
-                <img
-                  className="rounded border-shadow-gray-500 shadow-lg shadow-gray-500 object-cover h-64 w-full bg-white"
-                  src={searchData?.banner_image_url}
-                />
+                <a href={searchData?.external_url} target="blank">
+                  <img
+                    className="rounded border-shadow-gray-500 shadow-lg shadow-gray-500 object-cover h-64 w-full bg-white "
+                    src={searchData?.banner_image_url}
+                  />
+                </a>
 
                 <div className="absolute left-5 bottom-0 py-2 px-1 shadow-xl ">
                   <img
