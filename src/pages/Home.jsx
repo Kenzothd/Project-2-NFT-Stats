@@ -154,7 +154,7 @@ function Home({ fetchSearch, tradeHistory }) {
 
   return (
     <>
-      <div className="px-10 py-20 flex flex-col gap-32 relative bg-gray-800">
+      <div className="px-10 py-20 flex flex-col gap-32 bg-gray-800">
         <div className="text-center italic">
           <p className="text-6xl font-bold text-white">
             Best <span className="text-blue-600 ">NFT</span> Stats Tool
