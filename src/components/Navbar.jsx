@@ -9,6 +9,7 @@ function Navbar({ fetchSearch, searchData }) {
   let navigate = useNavigate();
 
   useEffect(() => {
+    //fetch and reflect gas fee(gwei)
     const interval = setInterval(() => {
       fetch(
         "https://api.etherscan.io/api?module=gastracker&action=gasoracle&apikey=78227RH2MGH83H5CVU1UG7U6XAMYSIE413"
@@ -23,7 +24,7 @@ function Navbar({ fetchSearch, searchData }) {
         });
     }, 10000);
 
-    fetchSearch("azuki");
+    //fetch and reflect homepage line chart
     return () => clearInterval(interval);
   }, []);
 
@@ -51,7 +52,7 @@ function Navbar({ fetchSearch, searchData }) {
       <nav className="bg-gray-900 border-gray-200 px-2 sm:px-2 py-3 ">
         <div className="container flex flex-wrap justify-between items-center mx-auto cursor-default ">
           <div className="flex gap-5">
-            <Link to="/home" className="flex items-center">
+            <Link to="/" className="flex items-center">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -154,7 +155,7 @@ function Navbar({ fetchSearch, searchData }) {
             <ul className="flex flex-col p-4 mt-4 bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-transparent relative ">
               <li>
                 <Link
-                  to="/home"
+                  to="/"
                   className="block font-poppins text-base pr-4 pl-3 text-blue-500 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-white md:p-0"
                 >
                   Home

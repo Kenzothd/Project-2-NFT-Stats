@@ -5,15 +5,10 @@ function Sidebar({ watchlist, removeWatchlist }) {
       {watchlist?.map((ele) => (
         <div
           key={ele?.slug}
-          className="flex justify-between items-center gap-2 border-2 border-solid border-black rounded-2xl border-opacity-30 my-1 pr-2 transition ease-in-out hover:scale-110"
+          className="flex justify-between items-center gap-2 border-2 border-solid border-black rounded-2xl border-opacity-30 my-1 pr-2 "
         >
-          <li className="w-full  ">
-            <p
-              onClick={() => {
-                fetchSearch(ele?.slug);
-                navigate("../stats");
-              }}
-            >
+          <li className="w-full">
+            <p>
               <img
                 className="w-8 h-8 rounded-full border-solid border-2 border-slate-400 bg-white"
                 src={ele?.image_url}

@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import LineChart from "../components/LineChart";
-import Sidebar from "../components/Sidebar";
 import searchSlug from "../assets/img/Search_Slug.png";
 import searchSlug2 from "../assets/img/Search_Slug2.png";
 import watchlist1 from "../assets/img/Watchlist1.png";
@@ -110,6 +109,7 @@ function Home({ fetchSearch, tradeHistory }) {
   //default home page
   useEffect(() => {
     fetchTopCollection("ONE_DAY_VOLUME");
+    fetchSearch("azuki");
   }, []);
   console.log("top collection stats", topCollectionStats);
 
@@ -172,12 +172,12 @@ function Home({ fetchSearch, tradeHistory }) {
         <div className="mx-48">
           <div className="carousel carousel-center w11/12 bg-white  rounded-box text-center space-x-10 px-10 ">
             <div id="slide1" className="carousel-item relative w-full">
-              <div className="text-center mx-auto py-10">
+              <div className="text-center mx-auto py-10 text-black">
                 <p className="text-5xl font-bold text-black mb-10">
                   Top Collections
                 </p>
-                <div className="text-white flex items-center justify-center pb-5">
-                  <p className="font-semibold text-black text-xl">Volume: </p>
+                <div className="flex items-center justify-center pb-5">
+                  <p className="font-semibold text-xl">Volume: </p>
                   <button
                     onClick={handlerVol}
                     className="font-semibold text-white border-solid border-2 border-black p-1 px-2 m-2 w-16 bg-slate-500 bg-opacity-90 rounded hover:bg-slate-400"
@@ -245,12 +245,12 @@ function Home({ fetchSearch, tradeHistory }) {
             </div>
 
             <div id="slide2" className="carousel-item relative w-full">
-              <div className="text-center mx-auto py-10">
+              <div className="text-center mx-auto py-10 text-black">
                 <p className="text-5xl font-bold text-black mb-10">
                   Top Collections
                 </p>
-                <div className="text-white flex items-center justify-center pb-5">
-                  <p className="font-semibold text-black text-xl">Volume: </p>
+                <div className="flex items-center justify-center pb-5">
+                  <p className="font-semibold text-xl">Volume: </p>
                   <button
                     onClick={handlerVol}
                     className="font-semibold text-white border-solid border-2 border-black p-1 px-2 m-2 w-16 bg-slate-500 bg-opacity-90 rounded hover:bg-slate-400"
@@ -325,7 +325,7 @@ function Home({ fetchSearch, tradeHistory }) {
             Track your Favourite Collection
           </p>
           <p className="font-bold text-xl">
-            Get the Lastest Transaction of Collection From Opensea
+            Get the Lastest Transaction from Opensea
           </p>
           <LineChart tradeHistory={tradeHistory} />
         </div>

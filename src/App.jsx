@@ -55,12 +55,11 @@ function App() {
                   .join(""),
               };
             });
-            const sortedData = filteredData.sort((a, b) => {
-              Number(a?.dateTimeNum - b?.dateTimeNum);
-            });
-            console.log("filtered data", filteredData);
-            // console.log("sorted data", sortedData);
-            setTradeHistory(sortedData);
+
+            //sort the date in ascending order(least recent to most recent)
+            filteredData?.sort((a, b) => Number(a.dateTimeNum - b.dateTimeNum));
+
+            setTradeHistory(filteredData);
           })
           .catch((err) => console.error(err));
       })
@@ -69,7 +68,6 @@ function App() {
 
   console.log("search data", searchData);
   console.log("trade history", tradeHistory);
-
 
   const removeWatchlist = (event) => {
     const newArray = watchlist.filter((ele) => ele.name !== event.target.value);
@@ -88,10 +86,6 @@ function App() {
           >
             <Route
               index
-              element={<Home watchlist={watchlist} fetchSearch={fetchSearch} />}
-            />
-            <Route
-              path="/home"
               element={
                 <Home fetchSearch={fetchSearch} tradeHistory={tradeHistory} />
               }
@@ -108,6 +102,7 @@ function App() {
                 />
               }
             />
+            <Route path="/topmarketcap" element={<TopMarketCap />} />
             <Route
               path="/watchlist"
               element={
@@ -118,7 +113,6 @@ function App() {
                 />
               }
             />
-            <Route path="/topmarketcap" element={<TopMarketCap />} />
           </Route>
         </Routes>
       </BrowserRouter>
