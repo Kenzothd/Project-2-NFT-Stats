@@ -22,6 +22,8 @@ function Navbar({ fetchSearch, searchData }) {
           );
         });
     }, 10000);
+
+    fetchSearch("azuki");
     return () => clearInterval(interval);
   }, []);
 

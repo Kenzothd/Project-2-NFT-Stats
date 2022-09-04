@@ -69,9 +69,7 @@ function App() {
 
   console.log("search data", searchData);
   console.log("trade history", tradeHistory);
-  useEffect(() => {
-    fetchSearch("azuki");
-  }, []);
+
 
   const removeWatchlist = (event) => {
     const newArray = watchlist.filter((ele) => ele.name !== event.target.value);
