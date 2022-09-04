@@ -13,7 +13,7 @@ function App() {
   const [tradeHistory, setTradeHistory] = useState([]);
   const [watchlist, setWatchlist] = useState([]);
 
-  const fetchSearch = (searchInput = "azuki") => {
+  const fetchSearch = (searchInput) => {
     const options = { method: "GET", headers: { Accept: "application/json" } };
 
     fetch(`https://api.opensea.io/api/v1/collection/${searchInput}`, options)
@@ -37,8 +37,8 @@ function App() {
           .then((response) => response.json())
           .then((data) => {
             //*Map and set trade history[{date, price, datewithtime}]*//
-            // console.log(data?.result?.[0]);
-            // console.log(data?.result?.[0]?.block_timestamp.split(""));
+            console.log(data?.result?.[0]);
+            console.log(data?.result?.[0]?.block_timestamp.split(""));
             const filteredData = data?.result?.map((ele) => {
               let price =
                 Math.round(ele?.price * Math.pow(10, -18) * 100) / 100;
@@ -55,29 +55,23 @@ function App() {
                   .join(""),
               };
             });
-
-            // console.log(filteredData);
-            filteredData?.sort((a, b) => {
+            const sortedData = filteredData.sort((a, b) => {
               Number(a?.dateTimeNum - b?.dateTimeNum);
             });
-
-            setTradeHistory(filteredData);
+            console.log("filtered data", filteredData);
+            // console.log("sorted data", sortedData);
+            setTradeHistory(sortedData);
           })
           .catch((err) => console.error(err));
       })
       ?.catch((err) => console.error(err));
   };
 
-  // console.log("search data", searchData);
-
-  const options = {
-    method: "GET",
-    headers: {
-      Accept: "application/json",
-      "X-API-Key":
-        "Im6egiFrpizkUoiydWVBFC4aSc9s4W6mffarvWRk7aGX5JW1NPLoTDHJhdHy4ink",
-    },
-  };
+  console.log("search data", searchData);
+  console.log("trade history", tradeHistory);
+  useEffect(() => {
+    fetchSearch("azuki");
+  }, []);
 
   const removeWatchlist = (event) => {
     const newArray = watchlist.filter((ele) => ele.name !== event.target.value);

@@ -2,6 +2,11 @@ import { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import LineChart from "../components/LineChart";
 import Sidebar from "../components/Sidebar";
+import searchSlug from "../assets/img/Search_Slug.png";
+import searchSlug2 from "../assets/img/Search_Slug2.png";
+import watchlist1 from "../assets/img/Watchlist1.png";
+import watchlist2 from "../assets/img/Watchlist2.png";
+import watchlist3 from "../assets/img/Watchlist3.png";
 
 function Home({ fetchSearch, tradeHistory }) {
   let navigate = useNavigate();
@@ -73,7 +78,7 @@ function Home({ fetchSearch, tradeHistory }) {
         const topCollections = data?.rankings?.map(
           (ele) => ele?.collection_slug
         );
-        // console.log("X top collections", topCollections);
+        console.log("X top collections", topCollections);
         ////////*Fetch Top Collections STATS*///////
         const options = {
           method: "GET",
@@ -83,7 +88,7 @@ function Home({ fetchSearch, tradeHistory }) {
         let requests = topCollections.map((ele) =>
           fetch(`https://api.opensea.io/api/v1/collection/${ele}/`, options)
         );
-        // console.log("request", requests);
+        console.log("request", requests);
 
         Promise.all(requests)
           .then((responses) => Promise.all(responses.map((r) => r.json())))
@@ -105,9 +110,8 @@ function Home({ fetchSearch, tradeHistory }) {
   //default home page
   useEffect(() => {
     fetchTopCollection("ONE_DAY_VOLUME");
-    fetchSearch();
   }, []);
-  // console.log("top collection stats", topCollectionStats);
+  console.log("top collection stats", topCollectionStats);
 
   /////////////////////////////////////////////////////////////
 
@@ -332,16 +336,16 @@ function Home({ fetchSearch, tradeHistory }) {
           </p>
           <div className="flex gap-10 justify-center">
             <img
-              src="../src/assets/img/Watchlist_1.png "
+              src={watchlist1}
               className="h-72 transition ease-in-out hover:scale-125 cursor-zoom-in"
             />
             <img
-              src="../src/assets/img/Watchlist_2.png"
+              src={watchlist2}
               className="h-72 w-60 transition ease-in-out hover:scale-150 cursor-zoom-in"
             />
           </div>
           <img
-            src="../src/assets/img/Watchlist_3.png"
+            src={watchlist3}
             className=" w-11/12 object-cover transition ease-in-out hover:scale-125 cursor-zoom-in mx-auto p-10 mt-20"
           />
         </div>
@@ -352,12 +356,12 @@ function Home({ fetchSearch, tradeHistory }) {
           </p>
 
           <img
-            src="../src/assets/img/Search_Slug2.png"
+            src={searchSlug2}
             className=" w-1/2 object-cover transition ease-in-out hover:scale-105 cursor-zoom-in mx-auto mt-10"
             alt="search-slug2"
           />
           <img
-            src="../src/assets/img/Search_Slug.png"
+            src={searchSlug}
             className="transition ease-in-out hover:scale-125 cursor-zoom-in mx-auto p-10"
             alt="search-slug"
           />
