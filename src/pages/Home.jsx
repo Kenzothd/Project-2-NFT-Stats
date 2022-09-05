@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import LineChart from "../components/LineChart";
 import searchSlug from "../assets/img/Search_Slug.png";
 import searchSlug2 from "../assets/img/Search_Slug2.png";
@@ -7,7 +7,7 @@ import watchlist1 from "../assets/img/Watchlist1.png";
 import watchlist2 from "../assets/img/Watchlist2.png";
 import watchlist3 from "../assets/img/Watchlist3.png";
 
-function Home({ fetchSearch, tradeHistory }) {
+function Home({ fetchSearch, tradeHistory, setLoading, loading }) {
   let navigate = useNavigate();
 
   /////////////////////////*State*/////////////////////////
@@ -59,6 +59,8 @@ function Home({ fetchSearch, tradeHistory }) {
 
   ///////////////////*Fetch Top Collections*//////////////////
   const fetchTopCollection = (Vol, volume = "one_day_volume") => {
+    setLoading(true);
+
     const options = {
       method: "GET",
       headers: {
@@ -77,7 +79,6 @@ function Home({ fetchSearch, tradeHistory }) {
         const topCollections = data?.rankings?.map(
           (ele) => ele?.collection_slug
         );
-        console.log("X top collections", topCollections);
         ////////*Fetch Top Collections STATS*///////
         const options = {
           method: "GET",
@@ -87,7 +88,6 @@ function Home({ fetchSearch, tradeHistory }) {
         let requests = topCollections.map((ele) =>
           fetch(`https://api.opensea.io/api/v1/collection/${ele}/`, options)
         );
-        console.log("request", requests);
 
         Promise.all(requests)
           .then((responses) => Promise.all(responses.map((r) => r.json())))
@@ -100,6 +100,7 @@ function Home({ fetchSearch, tradeHistory }) {
               (ele) => ele?.collection
             );
             setTopCollectionStats(collectionsStats);
+            setLoading(false);
           })
           .catch((err) => console.error(err));
       })
@@ -111,7 +112,6 @@ function Home({ fetchSearch, tradeHistory }) {
     fetchTopCollection("ONE_DAY_VOLUME");
     fetchSearch("azuki");
   }, []);
-  console.log("top collection stats", topCollectionStats);
 
   /////////////////////////////////////////////////////////////
 
@@ -224,7 +224,18 @@ function Home({ fetchSearch, tradeHistory }) {
                     </tr>
                   </thead>
 
-                  <tbody>{tbody(volume)}</tbody>
+                  {loading ? (
+                    <tbody className="text-center">
+                      <tr className="text-center">
+                        <td>Loading</td>
+                        <td>
+                          <progress className="progress w-56"></progress>
+                        </td>
+                      </tr>
+                    </tbody>
+                  ) : (
+                    <tbody>{tbody(volume)}</tbody>
+                  )}
                 </table>
                 <p className="font-semibold">page-1</p>
               </div>
@@ -325,7 +336,7 @@ function Home({ fetchSearch, tradeHistory }) {
             Track your Favourite Collection
           </p>
           <p className="font-bold text-xl">
-            Get the Lastest Transaction from Opensea
+            Monitor the Latest Sale from Opensea
           </p>
           <LineChart tradeHistory={tradeHistory} />
         </div>
@@ -357,7 +368,7 @@ function Home({ fetchSearch, tradeHistory }) {
 
           <img
             src={searchSlug2}
-            className=" w-1/2 object-cover transition ease-in-out hover:scale-105 cursor-zoom-in mx-auto mt-10"
+            className=" w-1/2 object-cover transition ease-in-out hover:scale-110 cursor-zoom-in mx-auto mt-10"
             alt="search-slug2"
           />
           <img

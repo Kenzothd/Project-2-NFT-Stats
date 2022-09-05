@@ -25,8 +25,6 @@ function TopMarketCap() {
       .catch((err) => console.error(err));
   }, []);
 
-  console.log(top100Collections);
-
   return (
     <>
       <div className="bg-gray-800 h-screen">

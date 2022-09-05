@@ -12,8 +12,10 @@ function App() {
   const [searchData, setSearchData] = useState({});
   const [tradeHistory, setTradeHistory] = useState([]);
   const [watchlist, setWatchlist] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const fetchSearch = (searchInput) => {
+    setLoading(true);
     const options = { method: "GET", headers: { Accept: "application/json" } };
 
     fetch(`https://api.opensea.io/api/v1/collection/${searchInput}`, options)
@@ -37,8 +39,6 @@ function App() {
           .then((response) => response.json())
           .then((data) => {
             //*Map and set trade history[{date, price, datewithtime}]*//
-            console.log(data?.result?.[0]);
-            console.log(data?.result?.[0]?.block_timestamp.split(""));
             const filteredData = data?.result?.map((ele) => {
               let price =
                 Math.round(ele?.price * Math.pow(10, -18) * 100) / 100;
@@ -60,14 +60,12 @@ function App() {
             filteredData?.sort((a, b) => Number(a.dateTimeNum - b.dateTimeNum));
 
             setTradeHistory(filteredData);
+            setLoading(false);
           })
           .catch((err) => console.error(err));
       })
       ?.catch((err) => console.error(err));
   };
-
-  console.log("search data", searchData);
-  console.log("trade history", tradeHistory);
 
   const removeWatchlist = (event) => {
     const newArray = watchlist.filter((ele) => ele.name !== event.target.value);
@@ -87,7 +85,12 @@ function App() {
             <Route
               index
               element={
-                <Home fetchSearch={fetchSearch} tradeHistory={tradeHistory} />
+                <Home
+                  fetchSearch={fetchSearch}
+                  tradeHistory={tradeHistory}
+                  setLoading={setLoading}
+                  loading={loading}
+                />
               }
             />
             <Route
@@ -99,6 +102,7 @@ function App() {
                   searchData={searchData}
                   removeWatchlist={removeWatchlist}
                   tradeHistory={tradeHistory}
+                  loading={loading}
                 />
               }
             />

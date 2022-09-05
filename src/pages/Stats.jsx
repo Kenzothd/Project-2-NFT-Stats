@@ -8,6 +8,7 @@ function Stats({
   setWatchlist,
   removeWatchlist,
   tradeHistory,
+  loading,
 }) {
   const round2DP = (num) => Math.round(num * 100) / 100;
 
@@ -43,7 +44,14 @@ function Stats({
                     className="font-poppins font-bold text-slate-50 text-4xl text-center bg-gray-900 bg-opacity-90
                   border-solid border-2 border-slate-50 rounded px-2 py-1"
                   >
-                    {searchData?.name}
+                    {loading ? (
+                      <div>
+                        <span>Loading</span>
+                        <progress className="progress w-56 bg-white"></progress>
+                      </div>
+                    ) : (
+                      searchData?.name
+                    )}
                   </p>
                 </div>
 
@@ -167,7 +175,7 @@ function Stats({
 
               <div id="linechart" className="mx-16">
                 <h2 className="text-2xl font-semibold text-white pb-5">
-                  Lastest Trade on Opensea
+                  Lastest Sale on Opensea
                 </h2>
                 <LineChart tradeHistory={tradeHistory} />
               </div>
