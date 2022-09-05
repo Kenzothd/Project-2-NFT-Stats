@@ -63,4 +63,4 @@ Data are retrieved from a various sources, including:
 
 All trademarks, logos and brand names are the property of their respective owners. All company, product and service names used in this website are for identification and illustration purposes only. Use of these names,trademarks and brands does not imply endorsement.
 
-This app is merely for programming practice purposes only. This is not an official NFT tool app. Not recommended to use to monitor actual NFT stats. Not financial advice.
+This software is solely intended to be used for programming practice. This program is not a legitimate NFT tool. Not advised for use in real-time NFT stat monitoring, nor monetary advice.
