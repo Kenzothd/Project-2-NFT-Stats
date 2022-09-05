@@ -28,12 +28,10 @@ function Stats({
             {/* <!-- Page content here --> */}
             <div className="px-40 py-16 flex flex-col gap-10 relative ">
               <div className="relative shadow-gray-100 h-30 ">
-                <a href={searchData?.external_url} target="blank">
-                  <img
-                    className="rounded border-shadow-gray-500 shadow-lg shadow-gray-500 object-cover h-64 w-full bg-white "
-                    src={searchData?.banner_image_url}
-                  />
-                </a>
+                <img
+                  className="rounded border-shadow-gray-500 shadow-lg shadow-gray-500 object-cover h-64 w-full bg-white "
+                  src={searchData?.banner_image_url}
+                />
 
                 <div className="absolute left-5 bottom-0 py-2 px-1 shadow-xl ">
                   <img
@@ -53,6 +51,25 @@ function Stats({
                       searchData?.name
                     )}
                   </p>
+                </div>
+
+                <div className="absolute right-4 top-4">
+                  <a href={searchData?.external_url} target="blank">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth="2"
+                      stroke="currentColor"
+                      className="w-8 h-8 pointer-none bg-black rounded bg-opacity-60 border-gray border-solid border-2"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"
+                      />
+                    </svg>
+                  </a>
                 </div>
 
                 <div className="absolute right-2 bottom-2">
@@ -84,6 +101,12 @@ function Stats({
                 <p>
                   Market Cap:{" "}
                   <span>{round2DP(searchData?.stats?.market_cap)}</span>
+                </p>
+                <p>
+                  Contract Address:{" "}
+                  <span>
+                    {searchData?.primary_asset_contracts?.[0]?.address}
+                  </span>
                 </p>
               </div>
               <div className="text-white border-2 border-slate-400  border-solid rounded p-2">

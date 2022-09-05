@@ -10,13 +10,15 @@ function Watchlist({ watchlist, removeWatchlist, fetchSearch }) {
           <h1 className="text-center font-bold text-3xl pb-10">WATCHLIST</h1>
           <div className="border-2 border-solid border-slate-400 mx-20 py-10 rounded-3xl h-full flex flex-col gap-10">
             {watchlist?.map((ele) => (
-              <div className="flex justify-around items-center ">
+              <div
+                className="flex justify-around items-center "
+                key={ele?.created_date}
+              >
                 <div
                   onClick={() => {
                     fetchSearch(ele?.slug);
                     navigate("../stats");
                   }}
-                  key={ele?.created_date}
                   className="grid grid-cols-4 border-solid border-2 border-black rounded-lg ml-20 mr-10 px-10 py-2 w-full font-poppins text-center items-center bg-white bg-opacity-5 transition ease-in-out hover:scale-105 cursor-pointer "
                 >
                   <div className="flex items-center justify-between gap-5">
