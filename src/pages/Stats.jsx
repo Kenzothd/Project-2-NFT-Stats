@@ -61,7 +61,7 @@ function Stats({
                       viewBox="0 0 24 24"
                       strokeWidth="2"
                       stroke="currentColor"
-                      className="w-8 h-8 pointer-none bg-black rounded bg-opacity-60 border-gray border-solid border-2"
+                      className="w-8 h-8 pointer-none text-white bg-black rounded bg-opacity-60 border-gray border-solid border-2"
                     >
                       <path
                         strokeLinecap="round"

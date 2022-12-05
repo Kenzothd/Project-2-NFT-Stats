@@ -71,14 +71,12 @@ function Home({ fetchSearch, tradeHistory, setLoading, loading }) {
       },
     };
     fetch(
-      `https://api.modulenft.xyz/api/v1/opensea/collection/rankings?sort_by=${Vol}&count=30&offset=0`,
+      `https://api.modulenft.xyz/api/v2/eth/nft/ranks?orderBy=volume&timeRange=${Vol}&count=30&offset=0&marketplace=Opensea`,
       options
     )
       .then((response) => response.json())
       .then((data) => {
-        const topCollections = data?.rankings?.map(
-          (ele) => ele?.collection_slug
-        );
+        const topCollections = data?.data?.map((ele) => ele?.slug);
         ////////*Fetch Top Collections STATS*///////
         const options = {
           method: "GET",

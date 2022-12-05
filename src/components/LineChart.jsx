@@ -10,6 +10,7 @@ const LineChart = ({ tradeHistory }) => {
 
   const config = {
     data,
+    text: "wrap",
     padding: "auto",
     xField: "dateWithTime",
     yField: "price",

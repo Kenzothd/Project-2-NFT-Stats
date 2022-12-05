@@ -48,7 +48,7 @@ function App() {
                   .slice(0, 19)
                   .filter((ele) => ele !== "-" && ele !== "T" && ele !== ":")
                   .join(""),
-                price: price,
+                price,
                 dateWithTime: ele.block_timestamp
                   .split("")
                   .slice(0, 19)
