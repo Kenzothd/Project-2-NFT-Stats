@@ -7,9 +7,9 @@ const TMCTreemap = ({ top100Collections }) => {
   useEffect(() => {
     const arrayOfObjects = top100Collections?.map((ele) => {
       let container = {};
-      container.name = ele.collection_name;
+      container.name = ele.name;
       container.value = Math.round(
-        ele.statistics.floor * ele.statistics.totalSupply
+        ele.stats.floor_price * ele.stats.total_supply
       );
       return container;
     });

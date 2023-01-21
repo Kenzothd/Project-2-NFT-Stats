@@ -18,6 +18,8 @@ function Home({ fetchSearch, tradeHistory, setLoading, loading }) {
   const round2DP = (num) => Math.round(num * 100) / 100;
 
   const tbody = (volume, a = 0, b = 10, c = 1) => {
+    console.log(topCollectionStats);
+
     return topCollectionStats?.slice(a, b).map((ele, i) => (
       <tr
         key={ele?.created_date}

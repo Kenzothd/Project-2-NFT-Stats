@@ -32,6 +32,8 @@ function App() {
           },
         };
 
+        console.log(data?.collection?.primary_asset_contracts?.[0]?.address);
+
         fetch(
           `https://deep-index.moralis.io/api/v2/nft/${data?.collection?.primary_asset_contracts?.[0]?.address}/trades?chain=eth&marketplace=opensea`,
           options
